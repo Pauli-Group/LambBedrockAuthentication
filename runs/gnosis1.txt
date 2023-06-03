@@ -1,0 +1,37 @@
+STEP 1: Create Account
+Address ................................ 0xfFFEB2885548dE170C3DF54a2b95D5559Af1CA5B
+Gas..................................... 0.007381824039369728
+Tx Hash ................................ 0xbb02f425477656e844e74f6b022ba0a282cab31c36ff5dd050c30121c8cfe7cb
+
+
+STEP 2: Sign Message
+Message ................................ 0x48b4c8149feffd5f2faf9be691dc97ecaf8812bca9eb2166f1da575a87384e14
+Local Key Count ........................ 199
+Contract Key Count ..................... 199
+Key Counts Match ....................... Yes
+Gas Paid................................ 0.001050736505603928
+Tx Hash ................................ 0x43d7b15d01effa3bd26aa3b6c440b07c48944316a3247e2901b0da5fa1ecad74
+
+
+STEP 3: Verify Message
+Message ................................ "My email address is contact@pauli.group [salt: eEX6azx6RV50bYUahGx0AV5dgx/JwEZQB9apL4/EG0s=]"
+Is valid ............................... Yes
+
+
+STEP 4: Add Keys
+Fee .................................... 0.01000000008
+Local Key Count ........................ 398
+Contract Key Count ..................... 398
+Key Counts Match ....................... Yes
+Tx Hash ................................ 0x1d8ef37bd893d4a8e5437c6ef030e6221d9ba5c8b000f854cf039b43d595540c
+
+
+STEP 5: Remove Keys
+Local Key Count ........................ 392
+Contract Key Count ..................... 392
+Key Counts Match ....................... Yes
+Tx Hash ................................ 0x939f155b21671377baa8e1b2bea73a3ecd0b7ee10a1fdec5f55ac8b909192021
+
+
+SUMMERY
+Total operational cost.................. 0.027604886673892728
