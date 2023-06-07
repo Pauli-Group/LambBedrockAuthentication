@@ -1,9 +1,15 @@
 {
-  "name":"lambbedrockauthentication",
-  "description":"Quantum Secure Authentication Over EVM Blockchains",
-  "version":"0.0.2",
-  "keywords": ["ethereum", "authentication", "quantum", "secure", "blockchain"],
-   "scripts": {
+  "name": "lambbedrockauthentication",
+  "description": "Quantum Secure Authentication Over EVM Blockchains",
+  "version": "0.0.3",
+  "keywords": [
+    "ethereum",
+    "authentication",
+    "quantum",
+    "secure",
+    "blockchain"
+  ],
+  "scripts": {
     "build": "npx tsc"
   },
   "devDependencies": {
