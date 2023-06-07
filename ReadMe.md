@@ -28,7 +28,7 @@ To build the JavaScript files from the Typescript files
 
  To Run A Demonstration
 
-> node src/Main.js
+> node lib/Main.js
 
 After making changes to any of the Typescript files you will need to recompile them to JavaScript files. 
 
