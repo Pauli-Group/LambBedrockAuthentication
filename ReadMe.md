@@ -69,3 +69,10 @@ If you really want to benefit from the security that comes with using a distribu
 > Setup a polygon nodeo https://wiki.polygon.technology/docs/category/run-a-full-node 
 
 > Setup a gnosis node https://docs.gnosischain.com/node
+
+
+## Importing
+
+```javascript
+import LambBedrockAuthentication from 'lambbedrockauthentication/lib/LambBedrockAuthentication'
+```
