@@ -6,10 +6,10 @@ import AccountJson from "./contracts/LambBedrockAuthentication.json";
 import Monad from "./Monad";
 
 export interface ILambBedrockAutentication {
-    createAccount(): Promise<[string, BaseKeyTracker, string]>;
+    createAccount(initialKeyCount: number): Promise<[string, BaseKeyTracker, string]>;
     verifyMessage(a: string, b: string): Promise<[boolean]>;
     signMessageAndPostSignature(a: string, b: string, c: BaseKeyTracker): Promise<any>;
-    addKeys(a: string, b: BaseKeyTracker): Promise<[ethers.BigNumber, number, number, boolean, string]>;
+    addKeys(a: string, b: BaseKeyTracker, amountToAdd: number): Promise<[ethers.BigNumber, number, number, boolean, string]>;
     removeKeys(a: string, b: KeyTrackerB, c: string[]): Promise<[number, number, boolean, string]>;
 }
 
@@ -26,9 +26,9 @@ export default class LambBedrockAuthentication implements ILambBedrockAutenticat
         this.confirmationTarget = _confirmationTarget;
     }
 
-    async createAccount(): Promise<[string, BaseKeyTracker, string]> {
+    async createAccount(initialKeyCount: number = 200): Promise<[string, BaseKeyTracker, string]> {
         const keyTracker = new KeyTrackerB();
-        const initialKeys = keyTracker.more(200);
+        const initialKeys = keyTracker.more(initialKeyCount);
         const initialKeyHashes = initialKeys.map(key => key.pkh);
 
         const provider = new ethers.providers.JsonRpcProvider(this.rpcEndpoint);
@@ -110,14 +110,14 @@ export default class LambBedrockAuthentication implements ILambBedrockAutenticat
     }
 
     // NOTICE: again, it matters a lot here that objects in typescript are passed by reference
-    async addKeys(accountAddress: string, keys: BaseKeyTracker): Promise<[ethers.BigNumber, number, number, boolean, string]> {
+    async addKeys(accountAddress: string, keys: BaseKeyTracker, amountToAdd: number = 200): Promise<[ethers.BigNumber, number, number, boolean, string]> {
         const provider = new ethers.providers.JsonRpcProvider(this.rpcEndpoint);
         const caller: ethers.Wallet = (new ethers.Wallet(this.ecdsaSecret)).connect(provider);
         const accountContract = new ethers.Contract(accountAddress, AccountJson.abi, caller);
 
         const signingKeys = keys.getOne()
 
-        const keysToAdd = keys.more(200)
+        const keysToAdd = keys.more(amountToAdd)
         const publicKeyHashes = keysToAdd.map(key => BaseKeyTracker.pkhFromPublicKey(key.pub))
 
         const fee = await accountContract.getKeyAdditionFee()
