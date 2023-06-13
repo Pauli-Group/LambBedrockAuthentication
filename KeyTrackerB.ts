@@ -93,6 +93,7 @@ export function mk_compressed_key_pair(): AdvancedKeyPair {
  */
 export default class KeyTrackerB extends BaseKeyTracker {
     keys: CompressedKeyPair[] = []
+    expendedKeys: string[] = []
 
     get count() {
         return this.keys.length
@@ -113,10 +114,15 @@ export default class KeyTrackerB extends BaseKeyTracker {
         const returnValue = this.keys.shift()
         if (returnValue === undefined)
             throw new Error('No keys left')
+        this.expendedKeys.push(returnValue.pkh)
         return uncompressLamport(returnValue)
     }
 
     getN(amount: number) {
-        return this.keys.splice(0, amount).map(k => uncompressLamport(k))
+        // return this.keys.splice(0, amount).map(k => uncompressLamport(k))
+        return this.keys.splice(0, amount).map(k => {
+            this.expendedKeys.push(k.pkh)
+            return uncompressLamport(k)
+        })
     }
 }

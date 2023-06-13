@@ -27,6 +27,7 @@ export declare function mk_compressed_key_pair(): AdvancedKeyPair;
  */
 export default class KeyTrackerB extends BaseKeyTracker {
     keys: CompressedKeyPair[];
+    expendedKeys: string[];
     get count(): number;
     get exhausted(): boolean;
     more(amount?: number): AdvancedKeyPair[];
